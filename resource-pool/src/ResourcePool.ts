@@ -8,7 +8,7 @@ class ResourcePoolMember<Data> {
 	}
 }
 
-class ResourcePool<Data> {
+export class ResourcePool<Data> {
 	poolArray: ResourcePoolMember<Data | null>[] = [];
 
 	// these two will be provided externally
@@ -46,12 +46,13 @@ class ResourcePool<Data> {
 	// releases an element
 	releaseElement(element: ResourcePoolMember<Data>): void {
 		element.available = true;
+		element.name = '';
 		this.resetFunction(element.data);
 	}
 }
 
 // Test
-const creatorFunc = () => {
+/*const creatorFunc = () => {
 	return { counter: 0 };
 };
 const resetFunc = (coolThing: { counter: number }) => {
@@ -61,7 +62,7 @@ const resetFunc = (coolThing: { counter: number }) => {
 const myPool = new ResourcePool<{ counter: number }>(creatorFunc, resetFunc, 1);
 const objectThatIsReadyToUse = myPool.getElement();
 
-console.log(objectThatIsReadyToUse);
+console.log(objectThatIsReadyToUse);*/
 // {
 //   "free": false,
 //   "data": {
@@ -70,9 +71,9 @@ console.log(objectThatIsReadyToUse);
 // }
 
 // ... doing stuff with objectThatIsReadyToUse.data
-objectThatIsReadyToUse.data.counter++;
+/*objectThatIsReadyToUse.data.counter++;
 objectThatIsReadyToUse.name = 'Prashant';
-console.log(objectThatIsReadyToUse);
+console.log(objectThatIsReadyToUse);*/
 // {
 //   "free": false,
 //   "data": {
@@ -81,8 +82,8 @@ console.log(objectThatIsReadyToUse);
 //   }
 // }
 
-myPool.releaseElement(objectThatIsReadyToUse);
-console.log(objectThatIsReadyToUse);
+/*myPool.releaseElement(objectThatIsReadyToUse);
+console.log(objectThatIsReadyToUse);*/
 // {
 //   "free": true,
 //   "data": {
